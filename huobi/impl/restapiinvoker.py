@@ -4,6 +4,8 @@ from huobi.exception.huobiapiexception import HuobiApiException
 from huobi.impl.utils.etfresult import etf_result_check
 from huobi.impl.utils import *
 
+proxies = {"http": "socks5h://127.0.0.1:1080", "https": "socks5h://127.0.0.1:1080"}
+
 session = requests.Session()
 
 def check_response(json_wrapper):
@@ -37,7 +39,7 @@ def check_response(json_wrapper):
 def call_sync(request, is_checked=False):
     if request.method == "GET":
         # print("call_sync url : " , request.host + request.url)
-        response = session.get(request.host + request.url, headers=request.header)
+        response = session.get(request.host + request.url, headers=request.header, proxies=proxies)
         # print("receive data : " + response.text)
         if is_checked is True:
             return response.text
