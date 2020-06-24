@@ -80,6 +80,7 @@ To install by source code, run below command
 python3 setup.py install
 ```
 
+pip install aiohttp websocket apscheduler requests[socks]
 
 
 ### Quick Start
